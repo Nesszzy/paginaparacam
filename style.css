@@ -1,0 +1,245 @@
+body {
+  font-family: "Playfair Display", serif;
+  background-color: #ffe4e1;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-image: url("fondo-romantico-sutil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.section {
+  padding: 40px 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  margin: 20px;
+}
+h1,
+h2 {
+  font-family: "Great Vibes", cursive;
+  color: #ff69b4;
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  font-size: 2em;
+}
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el Carrusel de Fotos - Ajustes para la vista previa y botones */
+.carousel-container {
+  position: relative;
+  /* Aumentamos el ancho máximo para que quepan las imágenes de los lados */
+  max-width: 900px; /* Ajusta este valor si tus imágenes o márgenes cambian */
+  margin: 0 auto 20px auto;
+  overflow: hidden; /* Oculta las partes de las imágenes que se salen */
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-track {
+  /* Nuevo contenedor para las slides que se moverá */
+  display: flex;
+  width: fit-content; /* Se ajusta al contenido total de las slides */
+  transition: transform 1s ease-in-out; /* Animación de deslizamiento */
+  align-items: center; /* Centra las imágenes verticalmente si tienen diferentes alturas */
+  /* Centra la primera imagen al cargar la página */
+  /* Este valor se ajustará dinámicamente con JS */
+}
+
+.carousel-slide {
+  flex-shrink: 0; /* Evita que las slides se encojan */
+  width: 320px; /* Ancho de la imagen principal */
+  height: 600px; /* Altura de la imagen principal */
+  margin: 0 15px; /* Espacio entre las imágenes para la vista previa */
+  position: relative;
+  transition: all 1s ease-in-out; /* Transición para el efecto de escala y opacidad */
+  opacity: 0.7; /* Opacidad para las imágenes no activas */
+  transform: scale(0.85); /* Tamaño para las imágenes no activas */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para todas */
+  overflow: hidden; /* Asegura que la imagen y caption no se salgan */
+}
+
+.carousel-slide.active {
+  opacity: 1; /* Opacidad completa para la imagen activa */
+  transform: scale(1); /* Tamaño original para la imagen activa */
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.7); /* Sombra resaltada para la activa */
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+}
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 12px;
+  font-size: 1em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Playfair Display", serif;
+}
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* Centra verticalmente */
+  width: auto;
+  padding: 15px 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translateY(-50%); /* Ajuste final para el centrado vertical */
+  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
+}
+.next {
+  right: 0;
+  border-radius: 5px 0 0 5px; /* Bordes redondeados a la izquierda */
+}
+.prev {
+  left: 0;
+  border-radius: 0 5px 5px 0; /* Bordes redondeados a la derecha */
+}
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Estilos para el texto romántico */
+.romantic-text {
+  text-align: justify;
+  font-style: italic;
+  color: #555;
+  font-size: 1.15em;
+}
+
+/* Estilo para el botón sorpresa */
+.surprise-button {
+  padding: 12px 25px;
+  background-color: #ffb6c1;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.surprise-button:hover {
+  background-color: #ff85a2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+#surpriseContent {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #fff0f5;
+  border: 2px dashed #ffb6c1;
+  border-radius: 10px;
+  text-align: left;
+}
+#surpriseContent h3 {
+  color: #ff69b4;
+  font-family: "Great Vibes", cursive;
+  margin-bottom: 10px;
+  font-size: 1.8em;
+  text-align: center;
+}
+#surpriseContent a {
+  display: block;
+  color: #ff69b4;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.1em;
+}
+#surpriseContent a:hover {
+  text-decoration: underline;
+}
+#surpriseContent pre {
+  white-space: pre-wrap; /* Ensures text wraps within the pre block */
+  word-wrap: break-word; /* Breaks long words to prevent horizontal overflow */
+  overflow-x: hidden; /* Hides any remaining horizontal overflow */
+  text-align: left; /* Aligns the text to the left */
+  font-family: monospace; /* Keeps it monospaced for code/lyrics style */
+  padding: 10px; /* Adds some padding inside the pre block */
+  background-color: #f8f8f8; /* Light background for readability */
+  border-radius: 5px; /* Slightly rounded corners */
+  max-height: 300px; /* Limits the height to prevent it from being too long */
+  overflow-y: auto; /* Adds a scrollbar if content exceeds max-height */
+  color: #333; /* Darker text for readability */
+  font-size: 0.9em; /* Slightly smaller font size */
+}
+/* Estilo para el formulario */
+.contact-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ff69b4;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 1em;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.contact-form button {
+  background-color: #ff69b4;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.contact-form button:hover {
+  background-color: #ff85a2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

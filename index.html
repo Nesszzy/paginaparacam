@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J1 y J2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="section">
+        <h1>Felices cuatro meses baby, te amo</h1>
+        <p>Cada día a tu lado es un regalo, y estos cuatro meses, han sido toda una experiencia. Gracias por tu amor, tu alegría y por cada momento compartido.</p>
+        <button class="surprise-button" onclick="toggleSurprise()">Toca este botón porfa</button>
+        <div id="surpriseContent">
+            <h3>US</h3>
+            <a href="https://link.deezer.com/s/30zSI65ZFh8oRMMePZFCW" target="_blank">Otra canción que nos define a nosotros, que me hace acordarme de ti.</a>
+            <pre id="songLyrics">
+Watching the video that you sent me
+The one where you're showering with wet hair dripping
+You know that I'm obsessed with your body
+But it's the way you smile that does it for me
+It's so sweet, knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet
+Watching the video where you're lying
+In your red lingerie ten times nightly
+You know I think your skin's the perfect color
+But it's always your eyes that pull me under
+It's so sweet knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet
+And I would gladly break it
+I would gladly break my heart for you
+And I would gladly break it
+I would gladly break my heart for you
+And I would gladly break it
+I would gladly break my heart for you
+And I would gladly break it
+I would gladly break my heart for you
+It's so sweet knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet                
+</pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Mi mayor orgullo</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="foto1.jpg" alt="Descripción de la foto 1">
+                    <div class="carousel-caption">Y aunque realmente no puedo siquiera acercarme a lo majestuosa que eres, me siento orgulloso de tenerte conmigo.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="foto2.jpg" alt="Descripción de la foto 2">
+                    <div class="carousel-caption">Como decía la canción, amo tu cuerpo, pero lo que más me hace enamorarme es tu sonrisa.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="foto3.jpg" alt="Descripción de la foto 3">
+                    <div class="carousel-caption">Toda esa seguridad y confianza que siempre has mostrado conmigo, simplemente me siento orgulloso de tenerte.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="foto4.jpg" alt="Descripción de la foto 4">
+                    <div class="carousel-caption">De tener a la mejor persona que me ha regalado este mundo, saber que tan joven ya habré encontrado mi alma gemela.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="foto5.jpg" alt="Descripción de la foto 5">
+                    <div class="carousel-caption">Una persona con tanta personalidad, una tan única e irrepetible, simplemente me quedo boquiabierto cuando me doy cuenta de quien eres.</div>
+                </div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <p>Cada una de estas fotos son solo un fragmento de ti, una parte de la obra de arte más hermosa que jamás se ha creado.</p>
+    </div>
+
+    <div class="section">
+        <h2>Arte</h2>
+        <p class="romantic-text">
+            Como bien sabes, siempre le doy vueltas a tratar de explicar todo esto que siento por ti, pero creo que finalmente me he
+            dado cuenta que: Eres un acontecimiento único, como una aurora boreal en el desierto. Entenderte, es descifrarte,
+            y descifrarte sería reducirte a algo que ya existe, y tú no eres algo, tú lo eres todo. Por eso, cuando intento comprenderte,
+            lo hago con la intención de amarte con los ojos abiertos, que ningún tipo de detalle se me escape de ti, aunque por simple
+            inercia eso pueda ocurrir. <br> <br>
+            Cada vez que te escucho reír, siento que tu risa no es solo un sonido, es un lugar al que quiero pertenecer,
+            quiero ser parte de ti, quiero ser uno. Tu belleza no está únicamente en tu piel, tu belleza está en la manera en la
+            que existes, todo lo que aportas, lo que me aportas a mí, es algo tan único. <br> <br>
+
+            Finalmente he logrado entender que eres una obra de arte, siempre lo decía, pero ahora mismo usaré la palabra con una
+            diferente connotación. Eres una obra de arte, no por lo perfecta, majestuosa e increíble que pareces, sino como con cualquier obra,
+            la única comparación que tiene es ella misma. Intentar hallarte explicación, cuando eres totalmente distinta a cualquier otra cosa
+            que haya existido, podría tomarme una vida entera. <br> <br>
+
+            Felices cuatro meses amor de mi vida, mi enanita hermosa, mi cami bella. Te amo con todo mi corazón
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Y si quieres decirme algo</h2>
+        <p>Finalmente, si quieres decirme algo, pues puedes enviarme un mensaje aquí :D</p>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xgvzknoa" method="POST">
+
+                <label for="message">Si quieres decirme algo, puedes enviarme un mensaje aqui:</label>
+                <textarea id="message" name="mensaje" required placeholder="Y si estás sin palabras, es válido JAJAJA"></textarea>
+
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
