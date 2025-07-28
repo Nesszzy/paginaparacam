@@ -1,245 +1,321 @@
 body {
-  font-family: "Playfair Display", serif;
-  background-color: #ffe4e1;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-image: url("fondo-romantico-sutil.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+    font-family: 'Playfair Display', serif;
+    background-color: #1F1F1F; /* Fondo muy oscuro, casi negro, con un matiz de carbón o marrón profundo */
+    color: #EFE8D6; /* Color de texto general claro para contrastar con el fondo oscuro */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url('fondo-romantico-sutil.jpg'); /* Revisa esta imagen; considera una textura oscura o color sólido */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative; /* Necesario para los elementos flotantes ::before y ::after en el body */
+    overflow-x: hidden; /* Evita scroll horizontal si los elementos flotantes salen del viewport */
 }
+
+/* Elementos flotantes de fondo para el body - como motas de polvo o partículas sutiles */
+body::before,
+body::after {
+    content: '';
+    position: fixed; /* Para que floten y no se desplacen con el scroll */
+    width: 200px;
+    height: 200px;
+    background: rgba(139, 94, 60, 0.1); /* Madera quemada muy transparente */
+    border-radius: 50%; /* Formas circulares */
+    filter: blur(50px); /* Desenfoque para un efecto suave y atmosférico */
+    z-index: -1; /* Asegura que estén detrás de todo el contenido */
+    animation: floatEffect 15s infinite ease-in-out alternate; /* Animación para que se muevan */
+}
+
+body::before {
+    top: 10%;
+    left: 10%;
+    transform: scale(0.8) rotate(20deg);
+}
+
+body::after {
+    bottom: 15%;
+    right: 15%;
+    width: 250px;
+    height: 250px;
+    background: rgba(201, 166, 107, 0.1); /* Dorado apagado muy transparente */
+    transform: scale(1.2) rotate(-30deg);
+    animation-delay: 3s; /* Para que se muevan de forma desincronizada */
+}
+
+@keyframes floatEffect {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.1; }
+    25% { transform: translate(20px, 50px) rotate(10deg) scale(1.1); opacity: 0.15; }
+    50% { transform: translate(-30px, 20px) rotate(-5deg) scale(0.9); opacity: 0.1; }
+    75% { transform: translate(10px, -40px) rotate(15deg) scale(1.05); opacity: 0.12; }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.1; }
+}
+
+
 .section {
-  padding: 40px 20px;
-  margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 15px;
-  margin: 20px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color: rgba(220, 215, 200, 0.98); /* Las cajas son más claras, un tono de pergamino o piedra clara */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada para profundidad */
+    border-radius: 15px;
+    margin: 20px;
+    border: 1px solid rgba(139, 94, 60, 0.5); /* Borde sutil que evoca un marco */
+    position: relative; /* Importante para posicionar los pseudo-elementos de esquina */
+    overflow: hidden; /* Asegura que cualquier detalle que se salga quede oculto */
+
+    /* Textura de "lienzo" o "papel viejo" superpuesta */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(#noiseFilter)" opacity="0.05"/></svg>');
+    background-size: auto;
+    background-blend-mode: multiply; /* Para que la textura se mezcle con el color de fondo */
 }
-h1,
-h2 {
-  font-family: "Great Vibes", cursive;
-  color: #ff69b4;
-  font-size: 2.5em;
-  margin-bottom: 15px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+/* Detalles de esquina para las secciones */
+.section::before,
+.section::after {
+    content: '';
+    position: absolute;
+    width: 30px; /* Tamaño del detalle */
+    height: 30px;
+    border-color: #C9A66B; /* Color dorado apagado */
+    border-style: solid;
+    z-index: 1; /* Asegura que estén por encima del contenido de la sección si es necesario */
+}
+
+.section::before {
+    top: 10px;
+    left: 10px;
+    border-width: 2px 0 0 2px; /* Solo bordes superior e izquierdo */
+}
+
+.section::after {
+    bottom: 10px;
+    right: 10px;
+    border-width: 0 2px 2px 0; /* Solo bordes inferior y derecho */
+}
+
+
+h1, h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #C9A66B; /* Un dorado opaco o bronce para los títulos, que resalte elegantemente */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra más fuerte para que destaquen */
 }
 h2 {
-  font-size: 2em;
+    font-size: 2em;
+    color: #8B5E3C; /* Un marrón más profundo para los subtítulos */
 }
 p {
-  font-size: 1.1em;
-  line-height: 1.6;
-  margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #3A2F2F; /* Marrón muy oscuro para el texto dentro de las cajas claras */
 }
 
 /* Estilos para el Carrusel de Fotos - Ajustes para la vista previa y botones */
 .carousel-container {
-  position: relative;
-  /* Aumentamos el ancho máximo para que quepan las imágenes de los lados */
-  max-width: 900px; /* Ajusta este valor si tus imágenes o márgenes cambian */
-  margin: 0 auto 20px auto;
-  overflow: hidden; /* Oculta las partes de las imágenes que se salen */
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra del contenedor del carrusel */
 }
 
 .carousel-track {
-  /* Nuevo contenedor para las slides que se moverá */
-  display: flex;
-  width: fit-content; /* Se ajusta al contenido total de las slides */
-  transition: transform 1s ease-in-out; /* Animación de deslizamiento */
-  align-items: center; /* Centra las imágenes verticalmente si tienen diferentes alturas */
-  /* Centra la primera imagen al cargar la página */
-  /* Este valor se ajustará dinámicamente con JS */
+    display: flex;
+    width: fit-content;
+    transition: transform 1s ease-in-out;
+    align-items: center;
 }
 
 .carousel-slide {
-  flex-shrink: 0; /* Evita que las slides se encojan */
-  width: 320px; /* Ancho de la imagen principal */
-  height: 600px; /* Altura de la imagen principal */
-  margin: 0 15px; /* Espacio entre las imágenes para la vista previa */
-  position: relative;
-  transition: all 1s ease-in-out; /* Transición para el efecto de escala y opacidad */
-  opacity: 0.7; /* Opacidad para las imágenes no activas */
-  transform: scale(0.85); /* Tamaño para las imágenes no activas */
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para todas */
-  overflow: hidden; /* Asegura que la imagen y caption no se salgan */
+    flex-shrink: 0;
+    width: 320px;
+    height: 600px;
+    margin: 0 15px;
+    position: relative;
+    transition: all 1s ease-in-out;
+    opacity: 0.7;
+    transform: scale(0.85);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para las slides individuales */
+    overflow: hidden;
 }
 
 .carousel-slide.active {
-  opacity: 1; /* Opacidad completa para la imagen activa */
-  transform: scale(1); /* Tamaño original para la imagen activa */
-  box-shadow: 0 0 25px rgba(255, 105, 180, 0.7); /* Sombra resaltada para la activa */
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(139, 94, 60, 0.8); /* Madera quemada con alta opacidad */
 }
 
 .carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
 }
 .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 12px;
-  font-size: 1em;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: "Playfair Display", serif;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 12px;
+    font-size: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
 }
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%; /* Centra verticalmente */
-  width: auto;
-  padding: 15px 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
-  transition: 0.6s ease;
-  user-select: none;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: translateY(-50%); /* Ajuste final para el centrado vertical */
-  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 15px 10px;
+    color: #EFE8D6; /* Color de texto claro para los botones */
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(60, 58, 54, 0.7); /* Tono oscuro de las cajas para los botones */
+    transform: translateY(-50%);
+    z-index: 10;
+    border-radius: 5px;
 }
 .next {
-  right: 0;
-  border-radius: 5px 0 0 5px; /* Bordes redondeados a la izquierda */
+    right: 0;
+    border-radius: 5px 0 0 5px;
 }
 .prev {
-  left: 0;
-  border-radius: 0 5px 5px 0; /* Bordes redondeados a la derecha */
+    left: 0;
+    border-radius: 0 5px 5px 0;
 }
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.9);
+.prev:hover, .next:hover {
+    background-color: rgba(139, 94, 60, 0.9); /* Color madera quemada al pasar el mouse */
 }
 
 /* Estilos para el texto romántico */
 .romantic-text {
-  text-align: justify;
-  font-style: italic;
-  color: #555;
-  font-size: 1.15em;
+    text-align: justify;
+    font-style: italic;
+    color: #3A2F2F; /* Marrón profundo para el texto dentro de la caja clara */
+    font-size: 1.15em;
 }
 
 /* Estilo para el botón sorpresa */
 .surprise-button {
-  padding: 12px 25px;
-  background-color: #ffb6c1;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  margin-top: 25px;
-  font-size: 1.1em;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 12px 25px;
+    background-color: #C9A66B; /* Dorado apagado */
+    color: #1F1F1F; /* Texto oscuro para el botón claro */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .surprise-button:hover {
-  background-color: #ff85a2;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #8B5E3C; /* Madera quemada al pasar el mouse */
+    color: #EFE8D6; /* Texto claro en hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 #surpriseContent {
-  display: none;
-  margin-top: 15px;
-  padding: 15px;
-  background-color: #fff0f5;
-  border: 2px dashed #ffb6c1;
-  border-radius: 10px;
-  text-align: left;
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #FDF6EC; /* Fondo muy claro para el contenido sorpresa */
+    border: 2px dashed #8B5E3C; /* Borde con color de madera quemada */
+    border-radius: 10px;
+    text-align: left;
 }
 #surpriseContent h3 {
-  color: #ff69b4;
-  font-family: "Great Vibes", cursive;
-  margin-bottom: 10px;
-  font-size: 1.8em;
-  text-align: center;
+    color: #8B5E3C; /* Marrón profundo para el título de la sorpresa */
+    font-family: 'Great Vibes', cursive;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    text-align: center;
 }
 #surpriseContent a {
-  display: block;
-  color: #ff69b4;
-  text-decoration: none;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-  font-size: 1.1em;
+    display: block;
+    color: #A6BBD8; /* Azul empolvado para el enlace de la canción */
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.1em;
 }
 #surpriseContent a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 #surpriseContent pre {
-  white-space: pre-wrap; /* Ensures text wraps within the pre block */
-  word-wrap: break-word; /* Breaks long words to prevent horizontal overflow */
-  overflow-x: hidden; /* Hides any remaining horizontal overflow */
-  text-align: left; /* Aligns the text to the left */
-  font-family: monospace; /* Keeps it monospaced for code/lyrics style */
-  padding: 10px; /* Adds some padding inside the pre block */
-  background-color: #f8f8f8; /* Light background for readability */
-  border-radius: 5px; /* Slightly rounded corners */
-  max-height: 300px; /* Limits the height to prevent it from being too long */
-  overflow-y: auto; /* Adds a scrollbar if content exceeds max-height */
-  color: #333; /* Darker text for readability */
-  font-size: 0.9em; /* Slightly smaller font size */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    text-align: left;
+    font-family: monospace;
+    padding: 10px;
+    background-color: #E6C2A1; /* Terracota suave para el fondo del código */
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    color: #3A2F2F; /* Texto marrón oscuro para las letras */
+    font-size: 0.9em;
 }
 /* Estilo para el formulario */
 .contact-form {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 25px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: left;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: rgba(220, 215, 200, 0.98); /* Mismo color de las secciones */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 .contact-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #ff69b4;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #8B5E3C; /* Madera quemada para la etiqueta */
 }
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-family: "Playfair Display", serif;
-  font-size: 1em;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #D8A48F; /* Arcilla clara para el borde del input */
+    border-radius: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    background-color: #FDF6EC; /* Marfil cálido para el fondo del input */
+    color: #3A2F2F; /* Marrón profundo para el texto del input */
 }
 .contact-form textarea {
-  resize: vertical;
-  min-height: 100px;
+    resize: vertical;
+    min-height: 100px;
 }
 .contact-form button {
-  background-color: #ff69b4;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  display: block;
-  margin: 0 auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #8B5E3C; /* Madera quemada para el botón de enviar */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .contact-form button:hover {
-  background-color: #ff85a2;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #C9A66B; /* Dorado apagado al pasar el mouse */
+    color: #1F1F1F; /* Texto oscuro en hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
