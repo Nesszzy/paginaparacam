@@ -126,7 +126,7 @@ p {
 .carousel-track {
     display: flex;
     width: fit-content;
-    transition: transform 1s ease-in-out;
+    transition: transform 1.2s ease-in-out; /* Hacemos la transición del carrusel un poco más suave */
     align-items: center;
 }
 
@@ -182,7 +182,7 @@ p {
     background-color: rgba(60, 58, 54, 0.7); /* Tono oscuro de las cajas para los botones */
     transform: translateY(-50%);
     z-index: 10;
-    border-radius: 5px;
+    border-radius: 5px; /* Bordes ligeramente redondeados */
 }
 .next {
     right: 0;
@@ -318,4 +318,102 @@ p {
     color: #1F1F1F; /* Texto oscuro en hover */
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Sección de Frases Flotantes --- */
+.floating-phrases-section {
+    background-color: rgba(60, 58, 54, 0.95); /* Un tono más oscuro para esta sección, como un mural */
+    color: #EFE8D6; /* Texto claro para esta sección */
+    padding: 60px 20px; /* Más espacio para las burbujas */
+    min-height: 400px; /* Asegura suficiente altura para la flotación */
+    position: relative;
+    overflow: hidden; /* Oculta cualquier burbuja que salga del contenedor */
+    display: flex; /* Para centrar el contenido */
+    flex-direction: column; /* Apila el título y el contenedor de frases */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+}
+
+.floating-phrases-section h2 {
+    color: #C9A66B; /* Dorado apagado para el título de la sección */
+    margin-bottom: 40px; /* Espacio debajo del título */
+    font-size: 2.2em;
+}
+
+.phrases-container {
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+    min-height: 300px; /* Asegura espacio para las burbujas */
+    margin-top: 20px;
+    /* Un fondo sutil para el contenedor de frases */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(#noiseFilter)" opacity="0.08"/></svg>');
+    background-size: auto;
+    background-blend-mode: multiply;
+    border-radius: 15px;
+    border: 1px solid rgba(201, 166, 107, 0.5); /* Borde dorado sutil */
+    overflow: visible; /* Permite que las frases puedan salirse un poco de los límites si se arrastran hasta el borde */
+}
+
+.phrase {
+    position: absolute;
+    padding: 10px 18px;
+    border-radius: 30px; /* Forma de burbuja */
+    font-size: 1.1em;
+    font-weight: bold;
+    white-space: nowrap; /* Evita que las frases se rompan en varias líneas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+    opacity: 0.9;
+    cursor: grab; /* Cursor para indicar que es arrastrable */
+    
+    /* Esta transición es para cuando la burbuja NO está siendo arrastrada (ej. hover o cuando se suelta) */
+    transition: transform 0.3s ease-out, background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+
+    /* RE-ACTIVAMOS LA ANIMACIÓN DE FLOTACIÓN AQUÍ */
+    animation: bubbleFloat 15s infinite ease-in-out alternate; 
+}
+
+.phrase:hover {
+    transform: scale(1.1); /* Ligeramente más grande al pasar el mouse */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Colores y posiciones INICIALES para las burbujas */
+/* Hemos ajustado los tiempos y direcciones de animación para más variedad */
+.phrase:nth-child(1) { top: 10%; left: 5%; background-color: #C9A66B; color: #1F1F1F; animation-duration: 15s; animation-direction: alternate; } /* Dorado */
+.phrase:nth-child(2) { top: 20%; right: 10%; background-color: #8B5E3C; color: #EFE8D6; animation-duration: 18s; animation-direction: alternate-reverse; } /* Madera quemada */
+.phrase:nth-child(3) { bottom: 5%; left: 15%; background-color: #A6BBD8; color: #1F1F1F; animation-duration: 16s; animation-direction: alternate; } /* Azul empolvado */
+.phrase:nth-child(4) { top: 30%; left: 40%; background-color: #D8A48F; color: #1F1F1F; animation-duration: 14s; animation-direction: alternate-reverse; } /* Arcilla clara */
+.phrase:nth-child(5) { top: 50%; right: 20%; background-color: #E6C2A1; color: #1F1F1F; animation-duration: 17s; animation-direction: alternate; } /* Terracota suave */
+.phrase:nth-child(6) { bottom: 15%; right: 30%; background-color: #C9A66B; color: #1F1F1F; animation-duration: 19s; animation-direction: alternate-reverse; }
+.phrase:nth-child(7) { top: 5%; right: 5%; background-color: #8B5E3C; color: #EFE8D6; animation-duration: 14s; animation-direction: alternate; }
+.phrase:nth-child(8) { bottom: 25%; left: 5%; background-color: #A6BBD8; color: #1F1F1F; animation-duration: 20s; animation-direction: alternate-reverse; }
+.phrase:nth-child(9) { top: 40%; left: 10%; background-color: #D8A48F; color: #1F1F1F; animation-duration: 16s; animation-direction: alternate; }
+.phrase:nth-child(10) { bottom: 10%; right: 50%; background-color: #E6C2A1; color: #1F1F1F; animation-duration: 18s; animation-direction: alternate-reverse; }
+.phrase:nth-child(11) { top: 60%; left: 30%; background-color: #C9A66B; color: #1F1F1F; animation-duration: 15s; animation-direction: alternate; }
+.phrase:nth-child(12) { top: 15%; left: 70%; background-color: #8B5E3C; color: #EFE8D6; animation-duration: 17s; animation-direction: alternate-reverse; }
+.phrase:nth-child(13) { bottom: 30%; left: 45%; background-color: #A6BBD8; color: #1F1F1F; animation-duration: 19s; animation-direction: alternate; }
+.phrase:nth-child(14) { top: 25%; right: 40%; background-color: #D8A48F; color: #1F1F1F; animation-duration: 16s; animation-direction: alternate-reverse; }
+.phrase:nth-child(15) { bottom: 5%; left: 70%; background-color: #E6C2A1; color: #1F1F1F; animation-duration: 14s; animation-direction: alternate; }
+.phrase:nth-child(16) { top: 70%; left: 5%; background-color: #C9A66B; color: #1F1F1F; animation-duration: 18s; animation-direction: alternate-reverse; }
+.phrase:nth-child(17) { bottom: 40%; right: 5%; background-color: #8B5E3C; color: #EFE8D6; animation-duration: 20s; animation-direction: alternate; }
+.phrase:nth-child(18) { top: 55%; left: 50%; background-color: #A6BBD8; color: #1F1F1F; animation-duration: 17s; animation-direction: alternate-reverse; }
+
+/* Animación de flotación para las burbujas */
+@keyframes bubbleFloat {
+    0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 0.9; }
+    25% { transform: translate(10px, -15px) rotate(2deg) scale(1.02); opacity: 0.95; }
+    50% { transform: translate(-10px, 0px) rotate(-2deg) scale(1); opacity: 0.9; }
+    75% { transform: translate(5px, 15px) rotate(3deg) scale(1.01); opacity: 0.92; }
+    100% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 0.9; }
+}
+
+/* Estilos específicos para cuando la burbuja está siendo arrastrada */
+.phrase.dragging {
+    cursor: grabbing; /* Cambia el cursor mientras se arrastra */
+    z-index: 1000; /* Asegura que la burbuja arrastrada esté por encima de todo */
+    opacity: 0.95; /* Ligeramente más opaca al arrastrar */
+    /* Importante: NO apliques transición a 'transform' aquí para que el arrastre sea instantáneo.
+       Solo transiciones para otros cambios visuales. */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
