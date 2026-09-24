@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function redirectToWhatsApp() {
     // Número de teléfono de Reinaldo en formato internacional (sin + ni espacios)
-    const phoneNumber = "584127654321"; // ← Cambia este número por el tuyo real
+    const phoneNumber = "584248554298"; // ← Cambia este número por el tuyo real
     window.open(`https://wa.me/${phoneNumber}`, "_blank");
 }
 
