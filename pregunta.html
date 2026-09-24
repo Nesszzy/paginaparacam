@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Enanita, te amo</title>
+    <!-- Fuentes: Playfair Display (romántica) + DM Sans (moderna) + Great Vibes (cursiva) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="pregunta.css">
+</head>
+
+<body>
+
+    <!-- PANTALLA DE INTRODUCCIÓN TIPO SISTEMA OPERATIVO -->
+    <div id="introOverlay" class="intro-overlay" onclick="nextIntroPhrase()">
+        <div class="intro-ambient-glow" aria-hidden="true"></div>
+        <div class="intro-particles-bg" id="introParticlesBg" aria-hidden="true"></div>
+        <div class="intro-content">
+            <p id="introText" class="intro-text"></p>
+        </div>
+        <div class="intro-hint" id="introHint">Toca la pantalla para avanzar</div>
+        <button type="button" class="btn-skip-intro" onclick="event.stopPropagation(); endIntro();">toka eto si keré
+            saltá</button>
+    </div>
+
+    <!-- Fondo de partículas flotantes suaves y resplandor ambiental -->
+    <div class="floating-hearts-bg" id="floatingBg" aria-hidden="true"></div>
+    <div class="app-ambient-glow" id="appAmbientGlow" aria-hidden="true"></div>
+
+    <!-- Contenedor Principal (Mobile-First) -->
+    <main class="app-container" id="mainAppContainer">
+
+        <!-- PANTALLA 1: ¿Me amas? -->
+        <section id="screen-p1" class="screen active">
+            <div class="card">
+                <div class="icon-badge">❓</div>
+                <h1 class="title">¿Me amas?</h1>
+                <p class="subtitle">¿Sientes eso dentro de tu corazón?</p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p2')">
+                        <span>Sí, te amo infinitamente</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="goToScreen('screen-p4')">
+                        <span>No, i don't love you anymore</span>
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="goToScreen('screen-duda')">
+                        <span>No lo sé</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA DUDA: Piénsalo y vuelve cuando lo sepas -->
+        <section id="screen-duda" class="screen">
+            <div class="card">
+                <div class="icon-badge">⏳</div>
+                <h2 class="title">Take ur time</h2>
+                <p class="subtitle">Vuelve cuando ya estes segura y asi</p>
+                <div class="thought-illustration">
+                    <span class="pulse-heart">💭</span>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p1')">
+                        <span>Ya, estoy segura</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 2: ¿Crees que tu amor sigue creciendo día con día? -->
+        <section id="screen-p2" class="screen">
+            <div class="card">
+                <div class="icon-badge"></div>
+                <h2 class="title">¿Me amas tanto que tu amor por mi crece cada día?</h2>
+                <p class="subtitle">¿Eres feliz conmigo cada dia? Incluso en los malos</p>
+
+                <form id="growth-form" action="https://formspree.io/f/X" method="POST">
+                    <div class="form-group">
+                        <textarea id="loveGrowthInput" name="amor_creciendo" rows="5"
+                            placeholder="Escribe aquí y pasa a la siguiente parte" required></textarea>
+                    </div>
+
+                    <button type="submit" id="btnSubmitGrowth" class="btn btn-primary" disabled>
+                        <span id="btnSubmitText">Enviar</span> 💌
+                    </button>
+                </form>
+
+                <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 3: ¿Estás enamorada? -->
+        <section id="screen-p3" class="screen">
+            <div class="card">
+                <div class="icon-badge"></div>
+                <h2 class="title">¿Estás enamorada?</h2>
+                <p class="subtitle">Piensa bien cada respuesta, ¿que sientes dentro de tu corazón?</p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p3b')">
+                        <span>Yea, I still in love with you baby</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="goToScreen('screen-confirm-enamorada')">
+                        <span>Nope, I'm not</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA CONFIRMACIÓN ENAMORADA: Oye, no es broma, trátame serio -->
+        <section id="screen-confirm-enamorada" class="screen">
+            <div class="card card-hostile">
+                <div class="icon-badge hostile-badge">👎</div>
+                <h2 class="title title-hostile">BABY, NO ES BROMA</h2>
+                <p class="subtitle subtitle-hostile">TOCA LOS BOTONES BIEN</p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p3b')">
+                        <span>Era broma, sí estoy enamorada de ti</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-hostile-danger"
+                        onclick="goToScreen('screen-warning')">
+                        <span>No era broma, ya no estoy enamorada</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 3.5: ¿Te sientes feliz actualmente a mi lado? -->
+        <section id="screen-p3b" class="screen">
+            <div class="card">
+                <div class="icon-badge"></div>
+                <h2 class="title">¿Te sientes feliz actualmente a mi lado?</h2>
+                <p class="subtitle"></p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p5')">
+                        <span>Sí</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="goToScreen('screen-p3c')">
+                        <span>No</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 3C: ¿Qué te hace sentir así? (formulario) -->
+        <section id="screen-p3c" class="screen">
+            <div class="card">
+                <div class="icon-badge">💬</div>
+                <h2 class="title">¿Qué te hace sentir así?</h2>
+                <p class="subtitle">Porfa, hazme entenderte</p>
+
+                <div id="p3c-form-wrapper">
+                    <form id="felicidad-form" action="https://formspree.io/f/X" method="POST">
+                        <div class="form-group">
+                            <textarea id="felicidadInput" name="felicidad_respuesta" rows="5"
+                                placeholder="Escribe aquí lo que sientes..."></textarea>
+                        </div>
+                        <div class="button-group" style="margin-top: 1rem;">
+                            <button type="submit" id="btnSubmitFelicidad" class="btn btn-primary" disabled>
+                                <span id="btnFelicidadText">Enviar</span> 💌
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="goToScreen('screen-p5')">
+                                <span>ERA BROMA TIO</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Confirmación tras enviar -->
+                <div id="p3c-confirm" class="p3c-confirm-box" style="display:none;">
+                    <p class="p3c-confirm-text">Ahora, espera por mi respuesta en WhatsApp</p>
+                    <button type="button" class="btn btn-primary" onclick="redirectToWhatsApp()">
+                        <span>Okay</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 4: ¿Segura de que no me amas? -->
+        <section id="screen-p4" class="screen">
+            <div class="card card-hostile">
+                <div class="icon-badge hostile-badge">🖤</div>
+                <h2 class="title title-hostile">TIO IM NOT PLAYING</h2>
+                <p class="subtitle subtitle-hostile">RESPONDE DE VERDAD JAJAJA</p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="goToScreen('screen-p2')">
+                        <span>ERA BROMA, SÍ TE AMO</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-hostile-danger"
+                        onclick="goToScreen('screen-warning')">
+                        <span>Yea, I dont love you anymore</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 5: Motivos (Rama "Sí") -->
+        <section id="screen-p5" class="screen">
+            <div class="card card-wide">
+                <div class="icon-badge">🌹</div>
+                <h2 class="title">This is for you, enanita de mi vida</h2>
+                <p class="subtitle">Lee cada cosa que escribí para ti:</p>
+
+                <div class="reveal-list">
+                    <button type="button" class="reveal-card-btn"
+                        onclick="openDetail('texto1', 'Si quieres leer lo que provocas en mí...')">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">💫</span>
+                            <span class="reveal-btn-text">Si quieres leer lo que provocas en mí, da click aquí</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+
+                    <button type="button" class="reveal-card-btn"
+                        onclick="openDetail('texto2', 'Lo que ha significado esto para mí...')">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">📖</span>
+                            <span class="reveal-btn-text">Si quieres leer lo que ha significado esto para mí, da click
+                                aquí</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+
+                    <button type="button" class="reveal-card-btn"
+                        onclick="openDetail('texto3', 'Quiero que leas esto...')">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">💌</span>
+                            <span class="reveal-btn-text">Lee esto, quiero que leas esto</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA DE ADVERTENCIA: Bloqueo de 15 segundos antes de la pantalla 6 -->
+        <section id="screen-warning" class="screen">
+            <div class="card card-warning">
+                <div class="icon-badge warning-badge">⚠️</div>
+                <h2 class="title title-warning">WAITTTTT</h2>
+
+                <div class="warning-box">
+                    <p class="warning-message">
+                        Baby, lo que leerás acá es únicamente si ya no me encuentro en tu vida, o si ya no me quieres en
+                        ella. Si llegaste hasta acá bromeando, toca donde dice <strong>"Regresar"</strong> y regresarás
+                        al inicio, pero, si elegiste bien, puedes seguir y dar en <strong>"Continuar"</strong>.
+                    </p>
+                </div>
+
+                <div class="warning-countdown-wrapper">
+                    <div class="warning-countdown-header">
+                        <span class="warning-countdown-title">Espera unos segundos...</span>
+                        <span id="warningSecondsPill" class="warning-seconds-pill">15s</span>
+                    </div>
+                    <div class="warning-progress-track">
+                        <div id="warningProgressFill" class="warning-progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="button-group warning-button-group">
+                    <button type="button" class="btn btn-warning-back" onclick="cancelWarningAndGoHome()">
+                        <span>← Regresar</span>
+                    </button>
+                    <button type="button" id="btnWarningContinue" class="btn btn-warning-continue"
+                        onclick="proceedFromWarning()" disabled>
+                        <span id="btnWarningContinueText">Continuar (15s)</span> 🔒
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 6: Cierre Angelical (Colores Blancos) -->
+        <section id="screen-p6" class="screen">
+            <div class="card card-wide card-angelic">
+                <div class="angelic-halo-glow" aria-hidden="true"></div>
+                <div class="icon-badge angelic-badge"></div>
+                <h2 class="title title-angelic">So, is this the end?</h2>
+                <p class="subtitle subtitle-angelic">I'll love you 'til the end of time</p>
+
+                <div class="reveal-list reveal-list-angelic">
+                    <button type="button" class="reveal-card-btn reveal-card-angelic"
+                        onclick="openDetail('texto4', 'Quiero agradecerte...')">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">🌸</span>
+                            <span class="reveal-btn-text">Toca aquí, quiero agradecerte</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+
+                    <button type="button" class="reveal-card-btn reveal-card-angelic"
+                        onclick="openDetail('texto5', 'Por si alguna vez regresas...')">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">🤍</span>
+                            <span class="reveal-btn-text">Toca aquí por si alguna vez regresas a esta página queriendo
+                                recordarme</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+
+                    <button type="button" class="reveal-card-btn reveal-card-angelic" onclick="openContactDetail()">
+                        <div class="reveal-btn-content">
+                            <span class="reveal-btn-icon">📬</span>
+                            <span class="reveal-btn-text">Toca aquí si quieres hablarme y no sabes cómo</span>
+                        </div>
+                        <span class="reveal-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA DE LECTURA DETALLADA (Detalle con botón Regresar) -->
+        <section id="screen-detail" class="screen">
+            <div class="card card-reading">
+                <div class="reading-header">
+                    <h2 id="readingTitle" class="title title-small">Título de lectura</h2>
+                </div>
+
+                <div id="readingBody" class="reading-body">
+                    <!-- Contenido dinámico (placeholder de texto o correo) -->
+                </div>
+
+                <div class="reading-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeDetail()">
+                        ← Regresar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast de Notificación -->
+    <div id="toast" class="toast" role="status" aria-hidden="true"></div>
+
+    <!-- Scripts de la Aplicación -->
+    <script src="pregunta.js"></script>
+</body>
+
+</html>
